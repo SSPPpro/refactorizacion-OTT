@@ -1,0 +1,65 @@
+{
+    "request": {
+        "headers": {
+            "accept": "image/tiff",
+            "content-type": "application/json"
+        },
+        "payload": {
+            "evalscript": "\n//VERSION=3\nfunction setup() {\n  return {\n    input: [{\n      bands: [\"B04\", \"B08\"],\n      units: \"REFLECTANCE\"\n    }],\n    output: {\n      id: \"default\",\n      bands: 1,\n      sampleType: SampleType.FLOAT32\n    }\n  };\n}\n\nfunction evaluatePixel(sample) {\n  let ndvi = (sample.B08 - sample.B04) / (sample.B08 + sample.B04);\n  return [ndvi];\n}\n",
+            "input": {
+                "bounds": {
+                    "bbox": [
+                        -73.56525250310105,
+                        2.1522819454092974,
+                        -73.47389767245183,
+                        2.2597303734913345
+                    ],
+                    "properties": {
+                        "crs": "http://www.opengis.net/def/crs/EPSG/0/4326"
+                    }
+                },
+                "data": [
+                    {
+                        "dataFilter": {
+                            "timeRange": {
+                                "from": "2024-08-01T00:00:00Z",
+                                "to": "2024-08-15T23:59:59Z"
+                            }
+                        },
+                        "type": "sentinel-2-l2a"
+                    }
+                ]
+            },
+            "output": {
+                "height": 1189,
+                "responses": [
+                    {
+                        "format": {
+                            "type": "image/tiff"
+                        },
+                        "identifier": "default"
+                    }
+                ],
+                "width": 1015
+            }
+        },
+        "timestamp": "2025-09-16T13:43:25.175914",
+        "url": "https://services.sentinel-hub.com/api/v1/process"
+    },
+    "response": {
+        "elapsed": 5.850628,
+        "headers": {
+            "Connection": "keep-alive",
+            "Content-Type": "image/tiff",
+            "Date": "Tue, 16 Sep 2025 18:41:01 GMT",
+            "Transfer-Encoding": "chunked",
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "origin,content-type,accept,accept-crs,authorization,cache-control",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH",
+            "access-control-allow-origin": "*",
+            "access-control-max-age": "3600",
+            "x-processingunits-spent": "6.138280415682402"
+        },
+        "status_code": 200
+    }
+}

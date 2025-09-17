@@ -1,0 +1,100 @@
+{
+  "displayFieldName" : "",
+  "fieldAliases" : {
+    "FID" : "FID",
+    "MpNombre" : "MpNombre",
+    "Depto" : "Depto",
+    "Cliente" : "Cliente",
+    "Fecha_Soli" : "Fecha_Soli",
+    "ID_AOI" : "ID_AOI",
+    "Shape_Leng" : "Shape_Leng",
+    "Shape_Area" : "Shape_Area",
+    "GlobalID" : "GlobalID",
+    "created_us" : "created_us",
+    "created_da" : "created_da",
+    "last_edite" : "last_edite",
+    "last_edi_1" : "last_edi_1"
+  },
+  "geometryType" : "esriGeometryPolygon",
+  "spatialReference" : {
+    "wkid" : 9377,
+    "latestWkid" : 9377
+  },
+  "fields" : [
+    {
+      "name" : "FID",
+      "type" : "esriFieldTypeOID",
+      "alias" : "FID"
+    },
+    {
+      "name" : "MpNombre",
+      "type" : "esriFieldTypeString",
+      "alias" : "MpNombre",
+      "length" : 250
+    },
+    {
+      "name" : "Depto",
+      "type" : "esriFieldTypeString",
+      "alias" : "Depto",
+      "length" : 50
+    },
+    {
+      "name" : "Cliente",
+      "type" : "esriFieldTypeString",
+      "alias" : "Cliente",
+      "length" : 254
+    },
+    {
+      "name" : "Fecha_Soli",
+      "type" : "esriFieldTypeDate",
+      "alias" : "Fecha_Soli",
+      "length" : 8
+    },
+    {
+      "name" : "ID_AOI",
+      "type" : "esriFieldTypeDouble",
+      "alias" : "ID_AOI"
+    },
+    {
+      "name" : "Shape_Leng",
+      "type" : "esriFieldTypeDouble",
+      "alias" : "Shape_Leng"
+    },
+    {
+      "name" : "Shape_Area",
+      "type" : "esriFieldTypeDouble",
+      "alias" : "Shape_Area"
+    },
+    {
+      "name" : "GlobalID",
+      "type" : "esriFieldTypeString",
+      "alias" : "GlobalID",
+      "length" : 38
+    },
+    {
+      "name" : "created_us",
+      "type" : "esriFieldTypeString",
+      "alias" : "created_us",
+      "length" : 254
+    },
+    {
+      "name" : "created_da",
+      "type" : "esriFieldTypeDate",
+      "alias" : "created_da",
+      "length" : 8
+    },
+    {
+      "name" : "last_edite",
+      "type" : "esriFieldTypeString",
+      "alias" : "last_edite",
+      "length" : 254
+    },
+    {
+      "name" : "last_edi_1",
+      "type" : "esriFieldTypeDate",
+      "alias" : "last_edi_1",
+      "length" : 8
+    }
+  ],
+  "features" : [{"attributes":{"FID":0,"MpNombre":" ","Depto":" ","Cliente":" ","Fecha_Soli":null,"ID_AOI":0,"Shape_Leng":87166.154412200005,"Shape_Area":471378680.19199997,"GlobalID":"{F0AAD187-39CB-449B-A43C-15950D8887CE}","created_us":"JANUS","created_da":1731628800000,"last_edite":"JANUS","last_edi_1":1731628800000},"geometry":{"rings":[[[4927025.5356000001,1819503.3752999995],[4946911.3767999997,1819599.8485000003],[4947324.4901000001,1795855.4635000005],[4927330.5990000004,1795967.4562999997],[4927025.5356000001,1819503.3752999995]]]}}]
+}
