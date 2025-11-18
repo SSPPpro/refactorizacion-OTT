@@ -1,0 +1,8 @@
+{
+    "start_date": "2025-09-27",
+    "end_date": "2025-09-28",
+    "tif_path": "C:\\Users\\sergi\\OneDrive - Procalculo Prosis S.A.S\\Servicios profesionales\\Procesos\\REF_TOOLS_PRISMA\\burn_zones\\results\\raster\\response.tiff",
+    "visual_png": "C:\\Users\\sergi\\OneDrive - Procalculo Prosis S.A.S\\Servicios profesionales\\Procesos\\REF_TOOLS_PRISMA\\burn_zones\\results\\raster\\visual_image.png",
+    "vector_shp": "C:\\Users\\sergi\\OneDrive - Procalculo Prosis S.A.S\\Servicios profesionales\\Procesos\\REF_TOOLS_PRISMA\\burn_zones\\results\\vector\\burn_areas_with_fields.shp",
+    "vector_geojson": "C:\\Users\\sergi\\OneDrive - Procalculo Prosis S.A.S\\Servicios profesionales\\Procesos\\REF_TOOLS_PRISMA\\burn_zones\\results\\burnt_areas_2025-09-27_2025-09-28.geojson"
+}
