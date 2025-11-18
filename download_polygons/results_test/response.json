@@ -1,0 +1,7 @@
+{
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-02",
+    "tiff_path": "results_test\\raster\\NDVI_index.tif",
+    "shapefile_path": "results_test\\vector\\NDVI_vectorized.shp",
+    "geojson_path": "results_test\\vector\\NDVI_vectorized.geojson"
+}
