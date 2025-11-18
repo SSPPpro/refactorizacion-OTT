@@ -1,7 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "AOI_P",
-"features": [
-{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -72.997598, 7.1416396 ], [ -73.0081491, 7.1038315 ], [ -72.9313605, 7.0827292 ], [ -72.9197347, 7.1210259 ], [ -72.997598, 7.1416396 ] ] ] } }
-]
-}
