@@ -1,0 +1,65 @@
+{
+    "request": {
+        "headers": {
+            "accept": "image/tiff",
+            "content-type": "application/json"
+        },
+        "payload": {
+            "evalscript": "\n            //VERSION=3\n            \n            // AQUI SE INYECTA TU VALOR DINAMICO\n            const NDVI_THRESHOLD = 0.1; \n            \n            const NDWI_THRESHOLD = 0.5; \n            const BRIGHTNESS_THRESHOLD = 0.18; \n            const WINDOW_DAYS = 0; \n            const CLOUD_PROBABILITY_THRESHOLD = 0.3;\n\n            function setup() {\n                return {\n                    input: [{\n                        bands: [\"B02\", \"B03\", \"B04\", \"B08\", \"CLD\"],\n                    }],\n                    output: [{\n                        id: \"default\",\n                        bands: 1,\n                        sampleType: \"UINT8\"\n                    }],\n                    mosaicking: \"ORBIT\"\n                };\n            }\n\n            function calcIndex(x, y) {\n                return (x - y) / (x + y);\n            }\n\n            function evaluatePixel(samples, scenes) {\n                const sortedScenes = scenes.map((s, i) => ({ scene: s, index: i }))\n                                           .sort((a, b) => b.scene.date.getTime() - a.scene.date.getTime());\n                \n                if (sortedScenes.length === 0) return [0];\n\n                const recentDate = sortedScenes[0].scene.date;\n                const oldestDate = sortedScenes[sortedScenes.length - 1].scene.date;\n\n                const recentIndices = sortedScenes.filter(\n                    (item) => recentDate.getTime() - item.scene.date.getTime() <= WINDOW_DAYS * 24 * 3600 * 1000\n                ).map(item => item.index);\n\n                const oldestIndices = sortedScenes.filter(\n                    (item) => item.scene.date.getTime() - oldestDate.getTime() <= WINDOW_DAYS * 24 * 3600 * 1000\n                ).map(item => item.index);\n\n                function isCloudOrWater(sample) {\n                    const brightness = sample.B02; \n                    const cloudProb = sample.CLD; \n                    const NDWI = calcIndex(sample.B03, sample.B08); \n                    \n                    const isCloud = brightness > BRIGHTNESS_THRESHOLD || cloudProb > CLOUD_PROBABILITY_THRESHOLD;\n                    const isWater = NDWI >= NDWI_THRESHOLD;\n                    return isCloud || isWater;\n                }\n\n                function calculateMeanNDVI(indicesArray) {\n                    let sumNDVI = 0;\n                    let count = 0;\n                    \n                    indicesArray.forEach((idx) => {\n                        const sample = samples[idx];\n                        if (sample && !isCloudOrWater(sample)) {\n                            const ndvi = calcIndex(sample.B08, sample.B04);\n                            if (!isNaN(ndvi)) {\n                                sumNDVI += ndvi;\n                                count += 1;\n                            }\n                        }\n                    });\n                    return count > 0 ? sumNDVI / count : null;\n                }\n\n                const recentMeanNDVI = calculateMeanNDVI(recentIndices);\n                const oldestMeanNDVI = calculateMeanNDVI(oldestIndices);\n\n                const ndviDifference = (recentMeanNDVI !== null && oldestMeanNDVI !== null) \n                                        ? oldestMeanNDVI - recentMeanNDVI \n                                        : 0;\n\n                if (ndviDifference >= NDVI_THRESHOLD) {\n                    return [1]; \n                } else {\n                    return [0];\n                }\n            }\n            ",
+            "input": {
+                "bounds": {
+                    "bbox": [
+                        -76.655731,
+                        2.280603,
+                        -76.508882,
+                        2.376485
+                    ],
+                    "properties": {
+                        "crs": "http://www.opengis.net/def/crs/EPSG/0/4326"
+                    }
+                },
+                "data": [
+                    {
+                        "dataFilter": {
+                            "timeRange": {
+                                "from": "2025-07-01T00:00:00Z",
+                                "to": "2025-09-30T23:59:59Z"
+                            }
+                        },
+                        "type": "sentinel-2-l2a"
+                    }
+                ]
+            },
+            "output": {
+                "height": 1058,
+                "responses": [
+                    {
+                        "format": {
+                            "type": "image/tiff"
+                        },
+                        "identifier": "default"
+                    }
+                ],
+                "width": 1635
+            }
+        },
+        "timestamp": "2025-11-24T16:20:58.386264",
+        "url": "https://services.sentinel-hub.com/api/v1/process"
+    },
+    "response": {
+        "elapsed": 51.620179,
+        "headers": {
+            "Connection": "keep-alive",
+            "Content-Type": "image/tiff",
+            "Date": "Mon, 24 Nov 2025 21:21:01 GMT",
+            "Transfer-Encoding": "chunked",
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "origin,content-type,accept,accept-crs,authorization,cache-control",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH",
+            "access-control-allow-origin": "*",
+            "access-control-max-age": "3600",
+            "x-processingunits-spent": "494.9083210251729"
+        },
+        "status_code": 200
+    }
+}
